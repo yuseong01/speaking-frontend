@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mal_hae_bol_le/lecture.dart';
+import 'package:mal_hae_bol_le/home/home.dart';
+import 'package:mal_hae_bol_le/main.dart';
+import 'package:mal_hae_bol_le/talking/chat_screen.dart';
+import 'package:mal_hae_bol_le/talking/each_talking.dart';
 
 
-class ButtonCurrent extends StatelessWidget {
-  ButtonCurrent({super.key});
+class TalkingButton extends StatelessWidget {
+  TalkingButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ Widget CardButton(BuildContext context, int index) {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => TodaysClub()),
+          MaterialPageRoute(builder: (context) => ChatScreen()),
         );
       },
       child: Container(
@@ -40,7 +43,7 @@ Widget CardButton(BuildContext context, int index) {
                   child: Stack(children: [
                     Positioned(
                       child: Image.network(
-                        'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/cnoC/image/7yWsGzD7n1Boy4uxVEhVJjNjfI0.jpg',
+                        'https://i.namu.wiki/i/53Bx0sBFhvhQAcDlx2r-DKCY8BHXsa31dngYDUclRr1E3W1LglIFmd9cI_kDags5C5CG05ZM7iOuFjKZzBdMVg.webp',
                         width: 170,
                         height: 170,
                         fit: BoxFit.cover,
@@ -80,7 +83,7 @@ Widget CardButton(BuildContext context, int index) {
                         top: 140,
                         left: 10,
                         child: Text(
-                          '라이언',
+                          '어피치',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -95,16 +98,11 @@ Widget CardButton(BuildContext context, int index) {
             ),
             Row(
               children: [
-                CircleAvatar(
-                  radius: 10,
-                  backgroundColor: Colors.white,
-                  child: Image.network('https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/cnoC/image/7yWsGzD7n1Boy4uxVEhVJjNjfI0.jpg'),
-                ),
                 SizedBox(
                   width: 10,
                 ),
                 Text(
-                  '라이언',
+                  '어피치',
                   style: TextStyle(color: Colors.black),
                 ),
               ],

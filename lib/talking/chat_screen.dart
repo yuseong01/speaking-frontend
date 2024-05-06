@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mal_hae_bol_le/talking/each_talking.dart';
 import 'package:mal_hae_bol_le/talking/new_talking.dart';
 
+//채팅 페이지
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 

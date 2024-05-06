@@ -9,6 +9,7 @@ class EachTalking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
+
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('chat')
@@ -27,11 +28,10 @@ class EachTalking extends StatelessWidget {
         final chatDocs = snapshot.data!.docs;
 
         return ListView.builder(
-            reverse: true,
             itemCount: chatDocs.length,
             itemBuilder: (context, index) {
               return ChatBubble(chatDocs[index]['comment'],
-                  chatDocs[index]['user_id'].toString() == user!.uid);
+                  chatDocs[index]['split'] == 1);
             });
       },
     );

@@ -19,15 +19,17 @@ class _NewTalkingState extends State<NewTalking> {
     _stopListening();
     FocusScope.of(context).unfocus();
     final user = FirebaseAuth.instance.currentUser;
-    FirebaseFirestore.instance.collection('chat').add({
-      'chat_id' : 1,
-      'time' : Timestamp.now(),
-      'comment' : _lastWords,
-      'laguage' : 1,
-      'room_id' : 1,
-      'split' : 2,
-      'user_id' : user!.uid,
-    });
+    if(_lastWords != null) {
+      FirebaseFirestore.instance.collection('chat').add({
+        'chat_id': 1,
+        'time': Timestamp.now(),
+        'comment': _lastWords,
+        'language': 1,
+        'room_id': 1,
+        'split': 1,
+        'user_id': user!.uid,
+      });
+    }
   }
 
 

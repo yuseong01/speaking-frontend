@@ -15,7 +15,6 @@ class EachTalking extends StatelessWidget {
           .collection('chat')
           .orderBy(
             'time',
-            descending: true,
           )
           .snapshots(),
       builder: (context,

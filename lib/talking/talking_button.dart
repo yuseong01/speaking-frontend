@@ -43,7 +43,7 @@ Widget CardButton(BuildContext context, int index) {
                   child: Stack(children: [
                     Positioned(
                       child: Image.network(
-                        'https://i.namu.wiki/i/53Bx0sBFhvhQAcDlx2r-DKCY8BHXsa31dngYDUclRr1E3W1LglIFmd9cI_kDags5C5CG05ZM7iOuFjKZzBdMVg.webp',
+                        'https://static.vecteezy.com/system/resources/previews/005/337/802/non_2x/icon-symbol-chat-outline-illustration-free-vector.jpg',
                         width: 170,
                         height: 170,
                         fit: BoxFit.cover,
@@ -83,7 +83,7 @@ Widget CardButton(BuildContext context, int index) {
                         top: 140,
                         left: 10,
                         child: Text(
-                          '어피치',
+                          '대화',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -102,7 +102,7 @@ Widget CardButton(BuildContext context, int index) {
                   width: 10,
                 ),
                 Text(
-                  '어피치',
+                  '대화',
                   style: TextStyle(color: Colors.black),
                 ),
               ],

@@ -41,7 +41,7 @@ Widget CardButton(BuildContext context, int index) {
                   child: Stack(children: [
                     Positioned(
                       child: Image.network(
-                        'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/cnoC/image/7yWsGzD7n1Boy4uxVEhVJjNjfI0.jpg',
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThpE4yb5W6LrVp5iG4s4yD6awCwJGPcTavXw&usqp=CAU',
                         width: 170,
                         height: 170,
                         fit: BoxFit.cover,
@@ -81,7 +81,7 @@ Widget CardButton(BuildContext context, int index) {
                         top: 140,
                         left: 10,
                         child: Text(
-                          '라이언',
+                          '강의',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ Widget CardButton(BuildContext context, int index) {
                   width: 10,
                 ),
                 Text(
-                  '라이언',
+                  '강의',
                   style: TextStyle(color: Colors.black),
                 ),
               ],

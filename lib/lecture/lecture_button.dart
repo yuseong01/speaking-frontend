@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mal_hae_bol_le/home/home.dart';
 import 'package:mal_hae_bol_le/login/sign_in.dart';
 
-
+//각각의 채팅으로 이동하는 버튼
 class LectureButton extends StatelessWidget {
   LectureButton({super.key});
 

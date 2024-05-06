@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mal_hae_bol_le/lecture/lecture_button.dart';
 
+//강의요약
 class Lecture extends StatelessWidget {
   const Lecture({super.key});
 

@@ -20,7 +20,7 @@ class _RecordState extends State<Record> {
     FocusScope.of(context).unfocus();
     final user = FirebaseAuth.instance.currentUser;
     if(_lastWords != null) {
-      FirebaseFirestore.instance.collection('chat').add({
+      FirebaseFirestore.instance.collection('lecture').add({
         'chat_id': 1,
         'time': Timestamp.now(),
         'comment': _lastWords,

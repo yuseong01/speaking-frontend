@@ -37,7 +37,7 @@ class _SignUpState extends State<SignUp> {
                       padding:
                       const EdgeInsets.only(top: 0, left: 20, bottom: 20),
                       child: Text(
-                        '이메일',
+                        'E-mail',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
@@ -48,9 +48,10 @@ class _SignUpState extends State<SignUp> {
                         right: 20,
                       ),
                       child: TextField(
+                        key: ValueKey(1),
                         controller: _emailInputText,
                         decoration: InputDecoration(
-                          hintText: '이메일을 입력하세요',
+                          hintText: 'E-mail',
                           hintStyle: TextStyle(color: Colors.grey),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -65,7 +66,7 @@ class _SignUpState extends State<SignUp> {
                       padding:
                       const EdgeInsets.only(top: 50, left: 20, bottom: 20),
                       child: Text(
-                        '비밀번호',
+                        'Password',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
@@ -76,9 +77,10 @@ class _SignUpState extends State<SignUp> {
                         right: 20,
                       ),
                       child: TextField(
+                        key: ValueKey(2),
                         controller: _passInputText,
                         decoration: InputDecoration(
-                          hintText: '비밀번호를 입력하세요',
+                          hintText: 'Password',
                           hintStyle: TextStyle(color: Colors.grey),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -128,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                       }
                     },
                     child: Text(
-                      '회원가입',
+                      'Sign Up',
                       style:
                       TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),

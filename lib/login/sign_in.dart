@@ -39,7 +39,7 @@ class _SignInState extends State<SignIn> {
                       padding:
                           const EdgeInsets.only(top: 0, left: 20, bottom: 20),
                       child: Text(
-                        '이메일',
+                        'E-mail',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
@@ -50,9 +50,10 @@ class _SignInState extends State<SignIn> {
                         right: 20,
                       ),
                       child: TextField(
+                        key: ValueKey(3),
                         controller: _emailInputText,
                         decoration: InputDecoration(
-                          hintText: '이메일을 입력하세요',
+                          hintText: 'E-mail',
                           hintStyle: TextStyle(color: Colors.grey),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -67,7 +68,7 @@ class _SignInState extends State<SignIn> {
                       padding:
                           const EdgeInsets.only(top: 50, left: 20, bottom: 20),
                       child: Text(
-                        '비밀번호',
+                        'Password',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
@@ -78,9 +79,10 @@ class _SignInState extends State<SignIn> {
                         right: 20,
                       ),
                       child: TextField(
+                        key: ValueKey(4),
                         controller: _passInputText,
                         decoration: InputDecoration(
-                          hintText: '비밀번호를 입력하세요',
+                          hintText: 'Password',
                           hintStyle: TextStyle(color: Colors.grey),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -126,7 +128,7 @@ class _SignInState extends State<SignIn> {
                           } else
                             print('an error occured');
                         },
-                        child: Text('구글로 시작하기'),
+                        child: Text('start with google'),
                       ),
                     ),
                     Row(
@@ -136,7 +138,7 @@ class _SignInState extends State<SignIn> {
                             context,
                             MaterialPageRoute(builder: 
                             (context) => SignUp()),
-                        );}, child: Text('회원가입'))
+                        );}, child: Text('Sign-up'))
                       ],
                     )
                   ],
@@ -178,7 +180,7 @@ class _SignInState extends State<SignIn> {
                       }
                     },
                     child: Text(
-                      '로그인',
+                      'Login',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),

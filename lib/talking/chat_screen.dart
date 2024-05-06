@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mal_hae_bol_le/talking/each_talking.dart';
+import 'package:mal_hae_bol_le/talking/new_talking.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -13,12 +14,15 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Free Talking'),
+        backgroundColor: Colors.purple,
       ),
       body: Container(
         child: Column(
           children: [
-            Expanded(child: EachTalking()),
+            Expanded(child: EachTalking(),),
+            NewTalking(),
           ],
         ),
       )

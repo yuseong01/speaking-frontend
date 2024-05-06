@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mal_hae_bol_le/home/home.dart';
+import 'package:mal_hae_bol_le/lecture/lecture_screen.dart';
 import 'package:mal_hae_bol_le/login/sign_in.dart';
-
 
 class LectureButton extends StatelessWidget {
   LectureButton({super.key});
@@ -25,7 +25,7 @@ Widget CardButton(BuildContext context, int index) {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SignIn()),
+          MaterialPageRoute(builder: (context) => LectureScreen()),
         );
       },
       child: Container(

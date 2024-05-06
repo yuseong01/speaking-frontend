@@ -7,10 +7,10 @@ class Record extends StatefulWidget {
   const Record({super.key});
 
   @override
-  State<Record> createState() => _NewTalkingState();
+  State<Record> createState() => _RecordState();
 }
 
-class _NewTalkingState extends State<Record> {
+class _RecordState extends State<Record> {
   SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
   String _lastWords = '';
@@ -19,15 +19,17 @@ class _NewTalkingState extends State<Record> {
     _stopListening();
     FocusScope.of(context).unfocus();
     final user = FirebaseAuth.instance.currentUser;
-    FirebaseFirestore.instance.collection('lecture').add({
-      'chat_id' : 1,
-      'time' : Timestamp.now(),
-      'comment' : _lastWords,
-      'laguage' : 1,
-      'room_id' : 1,
-      'split' : 2,
-      'user_id' : user!.uid,
-    });
+    if(_lastWords != null) {
+      FirebaseFirestore.instance.collection('chat').add({
+        'chat_id': 1,
+        'time': Timestamp.now(),
+        'comment': _lastWords,
+        'language': 1,
+        'room_id': 1,
+        'split': 1,
+        'user_id': user!.uid,
+      });
+    }
   }
 
 

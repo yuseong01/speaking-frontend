@@ -3,6 +3,7 @@ import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 class NewTalking extends StatefulWidget {
   const NewTalking({super.key});
 
@@ -15,11 +16,11 @@ class _NewTalkingState extends State<NewTalking> {
   bool _speechEnabled = false;
   String _lastWords = '';
 
-  void _sendMessage(){
+  void _sendMessage() {
     _stopListening();
     FocusScope.of(context).unfocus();
     final user = FirebaseAuth.instance.currentUser;
-    if(_lastWords != null) {
+    if (_lastWords != null) {
       FirebaseFirestore.instance.collection('chat').add({
         'chat_id': 1,
         'time': Timestamp.now(),
@@ -31,8 +32,6 @@ class _NewTalkingState extends State<NewTalking> {
       });
     }
   }
-
-
 
   @override
   void initState() {
@@ -72,7 +71,7 @@ class _NewTalkingState extends State<NewTalking> {
           padding: EdgeInsets.all(16),
           child: Text(
             'Recognized words:',
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(fontSize: 20.0, color: Colors.white),
           ),
         ),
         Container(
@@ -81,13 +80,14 @@ class _NewTalkingState extends State<NewTalking> {
             // If listening is active show the recognized words
             _speechToText.isListening
                 ? '$_lastWords'
-            // If listening isn't active but could be tell the user
-            // how to start it, otherwise indicate that speech
-            // recognition is not yet ready or not supported on
-            // the target device
+                // If listening isn't active but could be tell the user
+                // how to start it, otherwise indicate that speech
+                // recognition is not yet ready or not supported on
+                // the target device
                 : _speechEnabled
-                ? 'Tap the microphone to start listening...'
-                : 'Speech not available',
+                    ? 'Tap the microphone to start listening...'
+                    : 'Speech not available',
+            style: TextStyle(color: Colors.white),
           ),
         ),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -95,8 +95,11 @@ class _NewTalkingState extends State<NewTalking> {
             onPressed:
                 _speechToText.isNotListening ? _startListening : _sendMessage,
             tooltip: 'Listen',
-            icon:
-                Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+            icon: Icon(
+              _speechToText.isNotListening ? Icons.mic : Icons.mic_off,
+              size: 30,
+              color: Colors.white,
+            ),
           )
         ]),
       ]),

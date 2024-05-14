@@ -12,7 +12,7 @@ class ChatBubbleLecture extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Colors.black87,
+            color: Colors.grey[800],
             borderRadius: BorderRadius.circular(12)
           ),
           width: MediaQuery.of(context).size.width/10*9,

@@ -17,9 +17,10 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Free Talking'),
-        backgroundColor: Colors.purple,
+        backgroundColor: Colors.grey[900],
       ),
       body: Container(
+        color: Colors.grey[800],
         child: Column(
           children: [
             Expanded(child: EachTalking(),),

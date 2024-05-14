@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mal_hae_bol_le/home/home.dart';
-import 'package:mal_hae_bol_le/lecture/lecture_screen.dart';
-import 'package:mal_hae_bol_le/login/sign_in.dart';
+import 'package:mal_hae_bol_le/talking/chat_screen.dart';
 
-class LectureButton extends StatelessWidget {
-  LectureButton({super.key});
+
+class LectureRecommendButton extends StatelessWidget {
+  LectureRecommendButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // clubs 리스트 가져옴
 
     return GridView.count(
         crossAxisCount: 2,
@@ -25,11 +23,11 @@ Widget CardButton(BuildContext context, int index) {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => LectureScreen()),
+          MaterialPageRoute(builder: (context) => ChatScreen()),
         );
       },
       child: Container(
-        width: 170,
+        width: MediaQuery.of(context).size.width/5*2,
         child: Column(
           children: [
             Material(
@@ -41,7 +39,7 @@ Widget CardButton(BuildContext context, int index) {
                   child: Stack(children: [
                     Positioned(
                       child: Image.network(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThpE4yb5W6LrVp5iG4s4yD6awCwJGPcTavXw&usqp=CAU',
+                        'https://i.ytimg.com/vi/dM1dWUQm3uE/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA2GAo0-7oGNgwiNh8OpdUZacg3Xw',
                         width: MediaQuery.of(context).size.width/5*2,
                         height: MediaQuery.of(context).size.height/5*1,
                         fit: BoxFit.cover,
@@ -81,7 +79,7 @@ Widget CardButton(BuildContext context, int index) {
                         top: 140,
                         left: 10,
                         child: Text(
-                          '강의 이름',
+                          '주제',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -100,7 +98,7 @@ Widget CardButton(BuildContext context, int index) {
                   width: 10,
                 ),
                 Text(
-                  '주제',
+                  '차시',
                   style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
                 ),
               ],

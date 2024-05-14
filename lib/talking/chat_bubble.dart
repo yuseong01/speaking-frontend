@@ -13,7 +13,7 @@ class ChatBubble extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-              color: isMe ? Colors.grey : Colors.purple,
+              color: isMe ? Colors.grey : Colors.blueGrey,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),
                 topRight: Radius.circular(12),

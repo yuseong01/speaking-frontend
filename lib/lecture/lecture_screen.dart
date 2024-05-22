@@ -18,7 +18,7 @@ class _LectureScreenState extends State<LectureScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Lecture Translate'),
-        backgroundColor: Colors.pink[200],
+        backgroundColor: Colors.grey[900],
       ),
       body: Container(
         child: Column(

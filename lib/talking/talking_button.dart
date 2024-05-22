@@ -16,7 +16,7 @@ class TalkingButton extends StatelessWidget {
         crossAxisCount: 2,
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        childAspectRatio: 6/7,
+        childAspectRatio: 9/10,
         children: List.generate(10,
                 (index) => CardButton(context, index)));
   }
@@ -44,8 +44,8 @@ Widget CardButton(BuildContext context, int index) {
                     Positioned(
                       child: Image.network(
                         'https://static.vecteezy.com/system/resources/previews/005/337/802/non_2x/icon-symbol-chat-outline-illustration-free-vector.jpg',
-                        width: 170,
-                        height: 170,
+                        width: MediaQuery.of(context).size.width/5*2,
+                        height: MediaQuery.of(context).size.height/5*1,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -53,8 +53,8 @@ Widget CardButton(BuildContext context, int index) {
                         child: Opacity(
                           opacity: 0.6,
                           child: Container(
-                            width: 170,
-                            height: 170,
+                            width: MediaQuery.of(context).size.width/5*2,
+                            height: MediaQuery.of(context).size.height/5*1,
                             decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   begin: Alignment.topCenter,
@@ -68,8 +68,8 @@ Widget CardButton(BuildContext context, int index) {
                         )),
                     Positioned(
                         child: Container(
-                          width: 170,
-                          height: 170,
+                          width: MediaQuery.of(context).size.width/5*2,
+                          height: MediaQuery.of(context).size.height/5*1,
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
                                   colors: [
@@ -83,7 +83,7 @@ Widget CardButton(BuildContext context, int index) {
                         top: 140,
                         left: 10,
                         child: Text(
-                          '대화',
+                          '주제',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -102,8 +102,8 @@ Widget CardButton(BuildContext context, int index) {
                   width: 10,
                 ),
                 Text(
-                  '대화',
-                  style: TextStyle(color: Colors.black),
+                  '날짜',
+                  style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
                 ),
               ],
             ),

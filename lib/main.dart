@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +11,10 @@ import 'package:mal_hae_bol_le/login/sign_in.dart';
 import 'package:mal_hae_bol_le/talking/talking.dart';
 
 Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
 }
 
@@ -25,6 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    FlutterNativeSplash.remove();
   }
 
   bool isScrolled = false;
@@ -69,15 +74,13 @@ class _MainPageState extends State<MainPage> {
                 ],
                 leading: Container(
                   padding: EdgeInsets.all(10),
-                  child: Image.network(
-                      'https://img.freepik.com/premium-vector/vector-illustration-of-cute-horse-cartoon-waving-isolated-on-white-background_769891-51.jpg'),
+                  child: Image.asset('assets/logo.png')
                 ),
                 title: const Text(
-                  '말해볼래 ',
+                  '말해볼래',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                backgroundColor: Colors.purple,
-                shadowColor: Colors.orangeAccent,
+                backgroundColor: Colors.grey[900],
                 bottom: const TabBar(
                   isScrollable: true,
                   indicatorWeight: 2.0,

@@ -5,8 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class NewTalking extends StatefulWidget {
-  const NewTalking({super.key});
-
+  final String roomNumber;
+  const NewTalking({super.key, required this.roomNumber});
   @override
   State<NewTalking> createState() => _NewTalkingState();
 }
@@ -16,19 +16,33 @@ class _NewTalkingState extends State<NewTalking> {
   bool _speechEnabled = false;
   String _lastWords = '';
 
-  void _sendMessage() {
+  Future<void> _sendMessage() async {
     _stopListening();
     FocusScope.of(context).unfocus();
+
     final user = FirebaseAuth.instance.currentUser;
-    if (_lastWords != null) {
-      FirebaseFirestore.instance.collection('chat').add({
-        'chat_id': 1,
+    if (_lastWords != null && user != null) {
+      DocumentReference userDoc = FirebaseFirestore.instance.collection('chat').doc(user.uid);
+      DocumentReference roomDoc = userDoc.collection('rooms').doc(widget.roomNumber.toString());
+
+      final docSnapshot = await roomDoc.get();
+      if (!docSnapshot.exists) {
+        await roomDoc.set({
+          'room': widget.roomNumber,
+        });
+      }
+
+      CollectionReference messagesCollection = roomDoc.collection('message');
+      await messagesCollection.add({
         'time': Timestamp.now(),
         'comment': _lastWords,
         'language': 1,
-        'room_id': 1,
         'split': 1,
-        'user_id': user!.uid,
+      });
+
+      // Clear the last words after sending
+      setState(() {
+        _lastWords = '';
       });
     }
   }
@@ -44,7 +58,6 @@ class _NewTalkingState extends State<NewTalking> {
     setState(() {});
   }
 
-  /// Each time to start a speech recognition session
   void _startListening() async {
     await _speechToText.listen(onResult: _onSpeechResult);
     setState(() {});
@@ -77,23 +90,18 @@ class _NewTalkingState extends State<NewTalking> {
         Container(
           padding: EdgeInsets.all(16),
           child: Text(
-            // If listening is active show the recognized words
             _speechToText.isListening
                 ? '$_lastWords'
-                // If listening isn't active but could be tell the user
-                // how to start it, otherwise indicate that speech
-                // recognition is not yet ready or not supported on
-                // the target device
                 : _speechEnabled
-                    ? 'Tap the microphone to start listening...'
-                    : 'Speech not available',
+                ? 'Tap the microphone to start listening...'
+                : 'Speech not available',
             style: TextStyle(color: Colors.white),
           ),
         ),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
             onPressed:
-                _speechToText.isNotListening ? _startListening : _sendMessage,
+            _speechToText.isNotListening ? _startListening : _lastWords == '' ? _stopListening :_sendMessage,
             tooltip: 'Listen',
             icon: Icon(
               _speechToText.isNotListening ? Icons.mic : Icons.mic_off,

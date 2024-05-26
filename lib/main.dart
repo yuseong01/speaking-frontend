@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,6 +28,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   @override
   void initState() {
     super.initState();
@@ -92,19 +95,18 @@ class _MainPageState extends State<MainPage> {
                     Text(
                       'Home',
                       style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'Talking',
                       style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'Lecture',
                       style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(width: 190),
                   ],
                 ),
               ),

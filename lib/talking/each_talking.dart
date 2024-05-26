@@ -10,6 +10,7 @@ class EachTalking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
+    final ScrollController _scrollController = ScrollController();
     if (user == null) {
       return Center(child: Text('Please log in to view the chat.'));
     }
@@ -36,7 +37,17 @@ class EachTalking extends StatelessWidget {
 
         final chatDocs = snapshot.data!.docs;
 
+        // Scroll to the bottom when messages are updated
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeOut,
+          );
+        });
+
         return ListView.builder(
+          controller: _scrollController,
           itemCount: chatDocs.length,
           itemBuilder: (context, index) {
             return ChatBubble(

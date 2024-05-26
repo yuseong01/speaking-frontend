@@ -6,7 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class NewTalking extends StatefulWidget {
   final String roomNumber;
+
   const NewTalking({super.key, required this.roomNumber});
+
   @override
   State<NewTalking> createState() => _NewTalkingState();
 }
@@ -17,13 +19,14 @@ class _NewTalkingState extends State<NewTalking> {
   String _lastWords = '';
 
   Future<void> _sendMessage() async {
-    _stopListening();
     FocusScope.of(context).unfocus();
 
     final user = FirebaseAuth.instance.currentUser;
-    if (_lastWords != null && user != null) {
-      DocumentReference userDoc = FirebaseFirestore.instance.collection('chat').doc(user.uid);
-      DocumentReference roomDoc = userDoc.collection('rooms').doc(widget.roomNumber.toString());
+    if (_lastWords != '' && user != null) {
+      DocumentReference userDoc =
+      FirebaseFirestore.instance.collection('chat').doc(user.uid);
+      DocumentReference roomDoc =
+      userDoc.collection('rooms').doc(widget.roomNumber.toString());
 
       final docSnapshot = await roomDoc.get();
       if (!docSnapshot.exists) {
@@ -40,7 +43,7 @@ class _NewTalkingState extends State<NewTalking> {
         'split': 1,
       });
 
-      // Clear the last words after sending
+      // 메시지를 보낸 후 _lastWords를 초기화
       setState(() {
         _lastWords = '';
       });
@@ -59,19 +62,29 @@ class _NewTalkingState extends State<NewTalking> {
   }
 
   void _startListening() async {
-    await _speechToText.listen(onResult: _onSpeechResult);
+    await _speechToText.listen(
+      onResult: _onSpeechResult,
+      listenFor: Duration(seconds: 30),
+      pauseFor: Duration(seconds: 5),
+    );
+
     setState(() {});
   }
 
   void _stopListening() async {
     await _speechToText.stop();
-    setState(() {});
+    setState(() {_sendMessage();});
   }
 
   void _onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
       _lastWords = result.recognizedWords;
     });
+
+    // 음성 인식이 완료되었는지 확인
+    if (result.finalResult) {
+      _sendMessage();
+    }
   }
 
   @override
@@ -93,16 +106,15 @@ class _NewTalkingState extends State<NewTalking> {
             _speechToText.isListening
                 ? '$_lastWords'
                 : _speechEnabled
-                ? 'Tap the microphone to start listening...'
+                ? 'Tap to speak...'
                 : 'Speech not available',
             style: TextStyle(color: Colors.white),
           ),
         ),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-            onPressed:
-            _speechToText.isNotListening ? _startListening : _lastWords == '' ? _stopListening :_sendMessage,
-            tooltip: 'Listen',
+            onPressed: _speechToText.isNotListening ? _startListening : _stopListening,
+            tooltip: '듣기',
             icon: Icon(
               _speechToText.isNotListening ? Icons.mic : Icons.mic_off,
               size: 30,

@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:mal_hae_bol_le/home/recommend_lecture_button.dart';
 import 'package:mal_hae_bol_le/lecture/lecture_button.dart';
-
-class LectureRecommend extends StatelessWidget {
+enum MenuType { easy, normal, hard }
+extension ParseToString on MenuType {
+  String toShortString() {
+    return this.toString().split('.').last;
+  }
+}
+class LectureRecommend extends StatefulWidget {
   const LectureRecommend({super.key});
 
   @override
+  State<LectureRecommend> createState() => _LectureRecommendState();
+}
+
+class _LectureRecommendState extends State<LectureRecommend> {
+  @override
+  late MenuType _selection = MenuType.easy;
+
   Widget build(BuildContext context) {
     return ListView(
       physics: ClampingScrollPhysics(),
       children: [
-
         Container(
           color: Colors.grey[900],
           child: Container(
@@ -28,10 +39,27 @@ class LectureRecommend extends StatelessWidget {
                   title: Text(
                     //todo 최근 활동 동아리
                     'Recommend',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  trailing:PopupMenuButton<MenuType>(
+                    icon: Icon(Icons.menu),
+                    onSelected: (MenuType result) {
+                      setState(() {
+                        _selection = result;
+                      });
+                    },
+                    itemBuilder: (BuildContext context) => MenuType.values
+                        .map((value) => PopupMenuItem(
+                      value: value,
+                      child: Text(value.toShortString()),
+                    ))
+                        .toList(),
                   ),
                 ),
-                LectureRecommendButton(),
+                LectureRecommendButton(_selection),
               ],
             ),
           ),
